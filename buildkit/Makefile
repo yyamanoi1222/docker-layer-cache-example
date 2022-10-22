@@ -18,16 +18,17 @@ build-repo-max: clean
 build-local-min: clean
 	docker buildx rm --all-inactive -f
 	docker buildx create --use
-	rm -rf /tmp/docker_cache
 	sh build.sh local-min
 
 build-local-max: clean
 	docker buildx rm --all-inactive -f
 	docker buildx create --use
-	rm -rf /tmp/docker_cache
 	sh build.sh local-max
 
 clean:
 	docker builder prune -fa
 	docker images --no-trunc --format '{{.ID}}' | xargs docker rmi || true
 	docker images -a | grep layer-cache | awk '{print $3}' | xargs docker rmi || true
+
+clean_local_cache:
+	rm -rf /tmp/docker_cache

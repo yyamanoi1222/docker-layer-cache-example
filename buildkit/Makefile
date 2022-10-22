@@ -8,16 +8,22 @@ build-cache-from-full: clean
 	sh build.sh cache-from-full
 
 build-repo-min: clean
+	docker buildx rm --all-inactive -f
 	sh build.sh repository-min
 
 build-repo-max: clean
+	docker buildx rm --all-inactive -f
 	sh build.sh repository-max
 
 build-local-min: clean
+	docker buildx rm --all-inactive -f
+	docker buildx create --use
 	rm -rf /tmp/docker_cache
 	sh build.sh local-min
 
 build-local-max: clean
+	docker buildx rm --all-inactive -f
+	docker buildx create --use
 	rm -rf /tmp/docker_cache
 	sh build.sh local-max
 

@@ -11,3 +11,8 @@ legacyと違い、事前にイメージをpullしておく必要はない
 
 ## make build-repo-min, build-repo-max
 image repoにキャッシュ専用のイメージをpushする
+mode=minは最終イメージのみをキャッシュに含める
+mode=maxは中間イメージをキャッシュに含める
+
+## make build-local-min, build-local-max
+localにキャッシュを書き出す
